@@ -71,5 +71,5 @@ if __name__ == '__main__':
         threads[i].join()
 
     #主线程
-    print('end:%s' %ctime())
+    print('采集完成:%s' %ctime())
 
