@@ -1,5 +1,6 @@
 import requests
 import threading
+import os
 from bs4 import BeautifulSoup
 from time import sleep, ctime
 
@@ -34,7 +35,12 @@ def cj(con):
     cha_info = novel_soup.select_one('#info a').text  # 作者
 
     path = str(cha_title).strip()  # 去掉空格
-    fp = open("D:\mbxwx\\" + path + ".txt", 'w+', encoding='utf-8')
+    path = 'D:\mbxwx\\'
+    if os.path.exists(path) == False:
+        os.makedirs(path)
+
+    os.chdir(path)  # 切换到上面创建的文件夹
+    fp = open(path + ".txt", 'w+', encoding='utf-8')
 
     for key, value in cha_list:
         list_href = value.select_one('a')['href']
